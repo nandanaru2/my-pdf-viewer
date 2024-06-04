@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PdfViewer } from 'my-pdf-viewer';
+import  PdfViewer  from './components/PdfViewer';
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
