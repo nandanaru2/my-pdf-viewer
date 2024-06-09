@@ -9,7 +9,7 @@ const App: React.FC = () => {
   };
 
   const urldata = 'https://www.aeee.in/wp-content/uploads/2020/08/Sample-pdf.pdf'
-
+const nav ='#4270db'
   return (
     <div>
       <button onClick={handleOpenModal}>Open PDF Viewer</button>
@@ -17,7 +17,7 @@ const App: React.FC = () => {
         <PdfViewer
           url={urldata}
           ViewPDF={setIsModalOpen}
-          ViewpageNo={false} />
+          ViewpageNo={false} NavColor= {nav}/>
       )}
     </div>
   );
