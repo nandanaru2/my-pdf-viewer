@@ -1,4 +1,6 @@
 /* Modal container */
+import styled from "styled-components";
+export const Pdf = styled.a<{ $primary?: string; $secondary?:string}>`
 .modal {
   display: flex;
   justify-content: center;
@@ -60,7 +62,7 @@
 }
 
 .nav-button {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${props => props.$primary!="" ? props.$primary :'rgba(0, 0, 0, 0.5)'};
   color: white;
   border: none;
   padding: 10px;
@@ -70,7 +72,7 @@
 }
 
 .nav-button:disabled {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color:  ${props => props.$secondary!="" ? props.$secondary :'rgba(0, 0, 0, 0.2)'};
 }
 
 /* Page info styling */
@@ -103,4 +105,4 @@ canvas {
   max-height: 100%;
   display: block;
   margin: 0 auto;
-}
+}`

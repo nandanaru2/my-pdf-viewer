@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
 import 'pdfjs-dist/web/pdf_viewer.css';
-import '../styles/PdfViewer.css';
+import { Pdf } from '../styles/PdfViewercss';
+import dimColor from './common';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
@@ -9,12 +10,14 @@ interface PdfViewerProps {
     url: string;
     ViewPDF: React.Dispatch<React.SetStateAction<boolean>>;
     ViewpageNo: boolean;
+    NavColor?:string;
 }
 
-const PdfViewer: React.FC<PdfViewerProps> = ({ url, ViewPDF, ViewpageNo }) => {
+const PdfViewer: React.FC<PdfViewerProps> = ({ url, ViewPDF, ViewpageNo ,NavColor}) => {
     const [pdf, setPdf] = useState<pdfjsLib.PDFDocumentProxy | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [numPages, setNumPages] = useState(0);
+    const [dim,_setDim] = useState(NavColor?dimColor(NavColor):"")
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
@@ -85,6 +88,7 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ url, ViewPDF, ViewpageNo }) => {
     };
 
     return (
+        <Pdf $primary={NavColor} $secondary ={dim}>
         <div className="modal">
             <div className="modal-content">
                 {ViewpageNo && <span className="page-info">
@@ -110,6 +114,7 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ url, ViewPDF, ViewpageNo }) => {
                 </div>}
             </div>
         </div>
+        </Pdf>
     );
 };
 
